@@ -40,6 +40,7 @@ Estrutura:
 **Consulte canal por canal.** Para cada um dos canais acima, faça ao menos uma consulta: WebFetch na página e, se ela não abrir, WebSearch com `allowed_domains` do próprio site (ex.: "CBS IBS" + mês atual). Não encerre a verificação com uma ou duas buscas gerais.
 Procure também atos dos últimos 60 dias que ainda não estejam no painel (portarias, portarias conjuntas, resoluções do CGIBS, atos conjuntos, decretos, notas técnicas).
 Se um site não abrir, registre no `obs` do histórico quais canais ficaram sem verificação direta e siga com os demais.
+**Tente todos os canais em toda verificação**, inclusive o site da Leila Fuchter. Nunca pule um canal porque o histórico diz que ele falhou antes: a rede e os sites mudam.
 
 ## Tema fixo: transporte e combustíveis
 
