@@ -77,8 +77,9 @@ Novidades desse assunto vão na categoria "Transporte e combustíveis", e o tema
 
 ## Painel
 
-- `ultimaVerificacao`: agora, ex. `2026-11-11T07:05:00-03:00`.
-- `novidadesHoje`: quantidade de itens novos incluídos nesta verificação.
+- `ultimaVerificacao`: a hora real de agora em Brasília. Obtenha com `TZ=America/Sao_Paulo date +%Y-%m-%dT%H:%M:%S-03:00` (nunca estime a hora).
+- `novidadesHoje`: quantidade de itens com `registradoEm` igual à data de hoje e sem `"inicial": true` (soma as verificações do mesmo dia).
+- Se já houve verificação hoje, o `resumo` deve continuar citando o que entrou mais cedo no mesmo dia, acrescentando o que entrou agora.
 - `resumo`: curto, em português, para cliente de escritório contábil. Primeiro parágrafo: o que entrou hoje (ou "Sem novidades nos canais oficiais na verificação de dd/mm/aaaa."). Depois, em um parágrafo, o principal ponto de atenção em aberto (ex.: prazo próximo). Sem interpretação.
 - `historico`: acrescente `{"data": "AAAA-MM-DD", "novidades": N, "obs": "..."}` e mantenha só os 60 últimos.
 
