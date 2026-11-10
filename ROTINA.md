@@ -18,6 +18,33 @@ Estrutura:
 - `temas`: situação por tema. Campos: `id`, `tema`, `status` (`definido`, `tramitacao`, `pendente`, `implantacao`, `andamento`), `situacao`, `fontes` (lista de `{nome, url}`), `ordem`, `atualizadoEm`.
 - `cronograma`: `id`, `data`, `evento`, `curto` (até ~50 caracteres, aparece em "Próximos prazos"), `fonte`, `url`, `fonteOficial`.
 - `normas`: `id`, `ato`, `data`, `ementa`, `situacao`, `url`, `obs` (opcional).
+- `segmentos`: lista dos segmentos do menu lateral (`geral`, `transporte`). Não altere sem pedido da Dani.
+- `glossario`: `{termo, explicacao}`. Acrescente um termo quando uma sigla nova aparecer nas novidades.
+- `diesel`: dados do simulador (preço médio do diesel S10 por estado, ANP; crédito de PIS/Cofins de 9,25%; CBS de R$ 0,3515/litro).
+- `guias`: cartões explicativos fixos (ex.: subcontratação no transporte). Campos: `id`, `segmentos`, `ordem`, `titulo`, `tom` (`ok`, `atencao`, `info`, `risco`), `resumo`, `detalhe`, `fontes`.
+
+## Linguagem do painel (público: empresários)
+
+O painel é lido por empresários, não por contadores. Cada novidade e cada tema têm duas camadas:
+
+1. **Balão (linguagem simples)** — campos `chamada` e `simples`, obrigatórios em todo item novo de `atualizacoes` e em todo tema novo ou alterado:
+   - `chamada`: frase curta e direta, até ~70 caracteres, dizendo o que muda para a empresa (ex.: "Diesel: CBS de R$ 0,3515 por litro a partir de 2027").
+   - `simples`: 1 a 3 frases curtas, sem juridiquês e sem número de artigo. Explique as siglas (ex.: "Comitê Gestor do IBS, o órgão dos estados e municípios"). Diga para quem vale e a partir de quando. Pode sugerir uma ação prática (ex.: "confira com o fornecedor do seu sistema").
+   - Sem opinião, previsão ou exagero. Os números e datas têm de bater com a fonte oficial.
+2. **Detalhe (fonte oficial)** — campos `titulo`, `texto`, `ato`, `fonte`, `url`: continuam reproduzindo a publicação oficial, com trechos literais. É o que aparece quando o cliente clica em "Ler mais".
+
+Também obrigatório em todo item novo de `atualizacoes`, `temas` e `cronograma`: `segmentos`, lista com `"geral"` e/ou `"transporte"`. Use `"transporte"` para combustíveis, diesel, frete, CT-e, MDF-e, TAC, ANTT, Imposto Seletivo sobre veículos e o que mais afetar transportadoras; use `"geral"` para o que vale para empresas em geral. Pode usar os dois.
+
+O `resumo` do painel também é em linguagem simples: até 3 parágrafos curtos, o primeiro com o que entrou hoje, o último com o principal prazo ou ponto de atenção.
+
+## Preço do diesel (toda segunda e terça-feira)
+
+Às segundas e terças, confira se a ANP publicou uma semana nova em https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas (primeiro link "Preços médios semanais: Brasil, regiões, estados e municípios"). Se a semana for mais nova que `diesel.semana`, baixe a planilha, leia a aba ESTADOS (produto "OLEO DIESEL S10", coluna de preço médio de revenda) e a aba BRASIL, e atualize `diesel.estados` (por sigla da UF, 2 casas decimais), `diesel.brasil` e `diesel.semana` ("dd/mm/aaaa a dd/mm/aaaa"). Se não conseguir baixar, mantenha os valores e registre no histórico.
+
+## Guias fixos
+
+- Se sair o ato conjunto do Ministério da Fazenda e do Comitê Gestor com o percentual do crédito presumido do transportador autônomo (LC 214/2025, art. 169, § 4º), atualize o guia `sub-tac` com o percentual e o link oficial, e registre a novidade.
+- Se mudar a CBS por litro do diesel, atualize `diesel.cbsPorLitro`, `diesel.cbsFonte` e `diesel.cbsUrl`.
 
 ## Canais a consultar
 
@@ -35,6 +62,7 @@ Estrutura:
 
 12. Portal do CT-e (notas técnicas de CT-e, MDF-e e BP-e): https://www.cte.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=Y0nErnoZpsg%3D
 13. Receita Federal · Normas (portarias, instruções normativas e atos): https://normas.receita.fazenda.gov.br
+15. ANP · Preços de combustíveis (ver seção "Preço do diesel")
 14. Planalto · LC 214/2025 compilada: https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214compilado.htm
 
 **Consulte canal por canal.** Para cada um dos canais acima, faça ao menos uma consulta: WebFetch na página e, se ela não abrir, WebSearch com `allowed_domains` do próprio site (ex.: "CBS IBS" + mês atual). Não encerre a verificação com uma ou duas buscas gerais.
@@ -72,7 +100,7 @@ Use o conteúdo dela **só como pista**:
 - O painel é lido por clientes. **Nunca cite estimativas, cálculos ou qualquer informação interna do escritório** (por exemplo, a estimativa interna de 9,2% de CBS).
 - Se confirmar no texto oficial um item que hoje está com `fonteOficial: false` (ex.: número do ato conjunto RFB/CGIBS do DOU de 31/07/2026), troque pela fonte oficial.
 - `texto` com até ~600 caracteres; `resumo` com até ~700.
-- Reproduza o que está escrito no ato ou comunicado, **sem interpretação, opinião ou previsão**. Trechos literais entre aspas.
+- Nos campos de detalhe (`titulo`, `texto`, `ato`, `situacao`), reproduza o que está escrito no ato ou comunicado, **sem interpretação, opinião ou previsão**. Trechos literais entre aspas. A linguagem simples fica só em `chamada`, `simples` e `resumo` (ver "Linguagem do painel").
 - `titulo`: o título da publicação oficial.
 - `texto`: 1 a 3 frases com os pontos objetivos (o que muda, para quem, a partir de quando, número do ato). Pode ficar vazio se a página não trouxer mais que o título.
 - Datas no texto no formato dd/mm/aaaa. Valores e percentuais exatamente como na fonte.
@@ -90,7 +118,7 @@ Use o conteúdo dela **só como pista**:
 - `ultimaVerificacao`: a hora real de agora em Brasília. Obtenha com `TZ=America/Sao_Paulo date +%Y-%m-%dT%H:%M:%S-03:00` (nunca estime a hora).
 - `novidadesHoje`: quantidade de itens com `registradoEm` igual à data de hoje e sem `"inicial": true` (soma as verificações do mesmo dia).
 - Se já houve verificação hoje, o `resumo` deve continuar citando o que entrou mais cedo no mesmo dia, acrescentando o que entrou agora.
-- `resumo`: curto, em português, para cliente de escritório contábil. Primeiro parágrafo: o que entrou hoje (ou "Sem novidades nos canais oficiais na verificação de dd/mm/aaaa."). Depois, em um parágrafo, o principal ponto de atenção em aberto (ex.: prazo próximo). Sem interpretação.
+- `resumo`: em linguagem simples, para empresários. Primeiro parágrafo: o que entrou hoje, em poucas palavras (ou "Nenhuma novidade nos canais oficiais hoje."). Depois, em um parágrafo, o principal prazo ou ponto de atenção. Sem opinião.
 - `historico`: acrescente `{"data": "AAAA-MM-DD", "novidades": N, "obs": "..."}` e mantenha só os 60 últimos.
 
 ## Gravar e publicar
