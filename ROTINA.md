@@ -51,6 +51,15 @@ Muitos clientes do escritório são transportadoras. Em toda verificação, proc
 - notícias da ANTT e do Ministério dos Transportes sobre a reforma.
 Novidades desse assunto vão na categoria "Transporte e combustíveis", e o tema `transporte-combustiveis` deve ser atualizado quando houver mudança.
 
+### Fonte de pistas (não oficial): Leila Fuchter
+
+Leila Fuchter é tributarista especializada em transportadoras de carga. Em toda verificação, consulte o site dela (https://leilafuchter.com.br, incluindo blog e notícias, se houver) e, se possível, busque publicações recentes dela com WebSearch ("Leila Fuchter" + CBS, diesel, CT-e, transportadoras + mês atual). O Instagram dela (@leilafuchter) não abre sem login; não tente.
+
+Use o conteúdo dela **só como pista**:
+- Se ela mencionar um ato, prazo, alíquota ou mudança que ainda não esteja no painel, procure o **ato ou comunicado oficial** correspondente e registre o que está escrito nele, com o link oficial e `fonteOficial: true`.
+- Se não achar o ato oficial, não inclua nada; anote no `obs` do histórico: "Pista não confirmada: <assunto>".
+- **Nunca** cite, copie ou resuma o texto, a opinião ou a análise dela no painel, nem a mencione como fonte. O painel continua só com fontes oficiais.
+
 ## O que conta como novidade
 
 - Publicação sobre a reforma tributária do consumo (IBS, CBS, Imposto Seletivo, CGIBS, documentos fiscais, Simples Nacional na reforma, transição) com data **posterior à última verificação**, ou anterior mas que ainda não esteja no painel.
