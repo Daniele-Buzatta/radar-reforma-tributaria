@@ -44,6 +44,9 @@ Se um site não abrir, registre isso no `obs` do histórico e siga com os demais
 
 ## Como escrever
 
+- O painel é lido por clientes. **Nunca cite estimativas, cálculos ou qualquer informação interna do escritório** (por exemplo, a estimativa interna de 9,2% de CBS).
+- Se confirmar no texto oficial um item que hoje está com `fonteOficial: false` (ex.: número do ato conjunto RFB/CGIBS do DOU de 31/07/2026), troque pela fonte oficial.
+- `texto` com até ~600 caracteres; `resumo` com até ~700.
 - Reproduza o que está escrito no ato ou comunicado, **sem interpretação, opinião ou previsão**. Trechos literais entre aspas.
 - `titulo`: o título da publicação oficial.
 - `texto`: 1 a 3 frases com os pontos objetivos (o que muda, para quem, a partir de quando, número do ato). Pode ficar vazio se a página não trouxer mais que o título.
@@ -62,7 +65,7 @@ Se um site não abrir, registre isso no `obs` do histórico e siga com os demais
 - `ultimaVerificacao`: agora, ex. `2026-11-11T07:05:00-03:00`.
 - `novidadesHoje`: quantidade de itens novos incluídos nesta verificação.
 - `resumo`: curto, em português, para cliente de escritório contábil. Primeiro parágrafo: o que entrou hoje (ou "Sem novidades nos canais oficiais na verificação de dd/mm/aaaa."). Depois, em um parágrafo, o principal ponto de atenção em aberto (ex.: prazo próximo). Sem interpretação.
-- `historico`: acrescente `{"data": "AAAA-MM-DD", "novidades": N, "obs": "..."}`.
+- `historico`: acrescente `{"data": "AAAA-MM-DD", "novidades": N, "obs": "..."}` e mantenha só os 60 últimos.
 
 ## Gravar e publicar
 
