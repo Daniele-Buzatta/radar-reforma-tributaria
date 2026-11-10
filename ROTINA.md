@@ -14,7 +14,7 @@ Estrutura:
 - `painel`: `ultimaVerificacao` (ISO com `-03:00`), `novidadesHoje` (número), `resumo` (texto, `\n` para quebras), `historico` (lista de `{data, novidades, obs}`).
 - `atualizacoes`: novidades. Campos: `id`, `data` (data da publicação, AAAA-MM-DD), `registradoEm` (data de hoje), `categoria`, `orgao`, `titulo`, `texto`, `ato` (opcional), `fonte`, `url`, `fonteOficial` (true/false).
   Itens da carga inicial têm `"inicial": true`; **itens novos não levam esse campo** (é o que faz aparecer a etiqueta "Novo").
-  Categorias em uso: Receita Federal, CGIBS, Documentos fiscais, Simples Nacional, Legislação, TCU, Congresso. Crie outra só se nenhuma servir.
+  Categorias em uso: Receita Federal, CGIBS, Documentos fiscais, Simples Nacional, Legislação, TCU, Congresso, Transporte e combustíveis. Crie outra só se nenhuma servir.
 - `temas`: situação por tema. Campos: `id`, `tema`, `status` (`definido`, `tramitacao`, `pendente`, `implantacao`, `andamento`), `situacao`, `fontes` (lista de `{nome, url}`), `ordem`, `atualizadoEm`.
 - `cronograma`: `id`, `data`, `evento`, `curto` (até ~50 caracteres, aparece em "Próximos prazos"), `fonte`, `url`, `fonteOficial`.
 - `normas`: `id`, `ato`, `data`, `ementa`, `situacao`, `url`, `obs` (opcional).
@@ -33,8 +33,23 @@ Estrutura:
 10. NFS-e Nacional: https://www.gov.br/nfse
 11. Agência Gov: https://agenciagov.ebc.com.br
 
-Use WebFetch nas páginas e WebSearch (ex.: "reforma tributária CBS IBS" + nome do órgão + mês atual) para achar o que não aparece na página inicial.
-Se um site não abrir, registre isso no `obs` do histórico e siga com os demais.
+12. Portal do CT-e (notas técnicas de CT-e, MDF-e e BP-e): https://www.cte.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=Y0nErnoZpsg%3D
+13. Receita Federal · Normas (portarias, instruções normativas e atos): https://normas.receita.fazenda.gov.br
+14. Planalto · LC 214/2025 compilada: https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214compilado.htm
+
+**Consulte canal por canal.** Para cada um dos canais acima, faça ao menos uma consulta: WebFetch na página e, se ela não abrir, WebSearch com `allowed_domains` do próprio site (ex.: "CBS IBS" + mês atual). Não encerre a verificação com uma ou duas buscas gerais.
+Procure também atos dos últimos 60 dias que ainda não estejam no painel (portarias, portarias conjuntas, resoluções do CGIBS, atos conjuntos, decretos, notas técnicas).
+Se um site não abrir, registre no `obs` do histórico quais canais ficaram sem verificação direta e siga com os demais.
+
+## Tema fixo: transporte e combustíveis
+
+Muitos clientes do escritório são transportadoras. Em toda verificação, procure especificamente:
+- alíquotas da CBS e do IBS sobre combustíveis (cobrança ad rem, Portaria MF 3.074/2026 e atualizações), diesel, biodiesel, Imposto Seletivo;
+- crédito de CBS/IBS sobre insumos do transporte (combustível, pedágio, pneus, manutenção), crédito presumido na contratação de transportador autônomo (LC 214, art. 169);
+- CT-e, CT-eOS, MDF-e e BP-e (notas técnicas, prazos, rejeições);
+- transporte coletivo de passageiros e regimes específicos de transporte;
+- notícias da ANTT e do Ministério dos Transportes sobre a reforma.
+Novidades desse assunto vão na categoria "Transporte e combustíveis", e o tema `transporte-combustiveis` deve ser atualizado quando houver mudança.
 
 ## O que conta como novidade
 
