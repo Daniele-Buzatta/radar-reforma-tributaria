@@ -18,14 +18,18 @@ Estrutura:
 - `temas`: situação por tema. Campos: `id`, `tema`, `status` (`definido`, `tramitacao`, `pendente`, `implantacao`, `andamento`), `situacao`, `fontes` (lista de `{nome, url}`), `ordem`, `atualizadoEm`.
 - `cronograma`: `id`, `data`, `evento`, `curto` (até ~50 caracteres, aparece em "Próximos prazos"), `fonte`, `url`, `fonteOficial`.
 - `normas`: `id`, `ato`, `data`, `ementa`, `situacao`, `url`, `obs` (opcional).
-- `segmentos`: lista dos segmentos do menu lateral (`geral`, `transporte`). Não altere sem pedido da Dani.
+- `segmentos`: lista dos segmentos do menu lateral (`geral`, `transporte`, `passageiros`). Não altere sem pedido da Dani.
 - `glossario`: `{termo, explicacao}`. Acrescente um termo quando uma sigla nova aparecer nas novidades.
 - `diesel`: dados do simulador (preço médio do diesel S10 por estado, ANP; crédito de PIS/Cofins de 9,25%; CBS de R$ 0,3515/litro).
 - `guias`: cartões explicativos fixos (ex.: subcontratação no transporte). Campos: `id`, `segmentos`, `ordem`, `titulo`, `tom` (`ok`, `atencao`, `info`, `risco`), `resumo`, `detalhe`, `fontes`.
 
 ## Linguagem do painel (público: empresários)
 
-O painel é lido por empresários, não por contadores. Cada novidade e cada tema têm duas camadas:
+**Público-alvo: empresários do ramo de transporte** (donos e gestores de transportadoras de cargas e de empresas de ônibus e transporte de passageiros), clientes do escritório. Não são contadores. Escreva sempre pensando neles: o que muda no frete, no diesel, no CT-e, no crédito, no caixa da transportadora. Temas gerais entram também, mas, quando houver efeito para transportadoras, diga qual é.
+
+**Nunca escreva no painel nada sobre o próprio painel**: mudanças de layout, ajustes, novos recursos, testes, rotina, falhas de sites ou de verificação. Isso não interessa ao cliente. Essas informações vão só no `obs` do `historico`, que não aparece para o cliente.
+
+Cada novidade e cada tema têm duas camadas:
 
 1. **Balão (linguagem simples)** — campos `chamada` e `simples`, obrigatórios em todo item novo de `atualizacoes` e em todo tema novo ou alterado:
    - `chamada`: frase curta e direta, até ~70 caracteres, dizendo o que muda para a empresa (ex.: "Diesel: CBS de R$ 0,3515 por litro a partir de 2027").
@@ -33,9 +37,13 @@ O painel é lido por empresários, não por contadores. Cada novidade e cada tem
    - Sem opinião, previsão ou exagero. Os números e datas têm de bater com a fonte oficial.
 2. **Detalhe (fonte oficial)** — campos `titulo`, `texto`, `ato`, `fonte`, `url`: continuam reproduzindo a publicação oficial, com trechos literais. É o que aparece quando o cliente clica em "Ler mais".
 
-Também obrigatório em todo item novo de `atualizacoes`, `temas` e `cronograma`: `segmentos`, lista com `"geral"` e/ou `"transporte"`. Use `"transporte"` para combustíveis, diesel, frete, CT-e, MDF-e, TAC, ANTT, Imposto Seletivo sobre veículos e o que mais afetar transportadoras; use `"geral"` para o que vale para empresas em geral. Pode usar os dois.
+Também obrigatório em todo item novo de `atualizacoes`, `temas` e `cronograma`: `segmentos`, lista com `"geral"`, `"transporte"` e/ou `"passageiros"`.
+- `"transporte"` (cargas): combustíveis, diesel, frete, CT-e, MDF-e, TAC, ANTT, subcontratação, Imposto Seletivo sobre veículos de carga.
+- `"passageiros"`: ônibus urbano, metropolitano, intermunicipal e interestadual, fretamento e turismo, BP-e (bilhete de passagem eletrônico), transporte ferroviário, hidroviário e aéreo regional de passageiros, Imposto Seletivo sobre ônibus, regime específico da LC 214/2025 (arts. 157 e 284 a 287), diesel e combustíveis.
+- `"geral"`: o que vale para empresas em geral.
+Pode usar mais de um.
 
-O `resumo` do painel também é em linguagem simples: até 3 parágrafos curtos, o primeiro com o que entrou hoje, o último com o principal prazo ou ponto de atenção.
+O `resumo` do painel também é em linguagem simples, para o empresário de transporte: até 3 parágrafos curtos, o primeiro com o que entrou hoje (priorizando o que afeta transportadoras), o último com o principal prazo ou ponto de atenção. Nada sobre o painel, a rotina ou sites que não abriram.
 
 ## Preço do diesel (toda segunda e terça-feira)
 
@@ -80,6 +88,16 @@ Muitos clientes do escritório são transportadoras. Em toda verificação, proc
 - notícias da ANTT e do Ministério dos Transportes sobre a reforma.
 Novidades desse assunto vão na categoria "Transporte e combustíveis", e o tema `transporte-combustiveis` deve ser atualizado quando houver mudança.
 
+## Tema fixo: transporte de passageiros
+
+Há clientes que são empresas de ônibus. Em toda verificação, procure também:
+- regras do transporte coletivo de passageiros na LC 214/2025 (isenção do urbano e metropolitano, art. 157; redução de 40% do intermunicipal e interestadual, art. 286) e qualquer regulamentação ou mudança;
+- tributação do fretamento e do turismo;
+- Imposto Seletivo sobre ônibus e micro-ônibus (MP 1.399/2026, conversão em lei, emendas);
+- BP-e (notas técnicas, prazos, rejeições);
+- notícias da ANTT, da ANTP, do Ministério dos Transportes e do Marco Legal do Transporte Público ligadas à reforma.
+Novidades desse assunto vão na categoria "Transporte de passageiros", com `segmentos` incluindo `"passageiros"`. Atualize o tema `transporte-passageiros` e os guias `pas-*` quando houver mudança.
+
 ### Fonte de pistas (não oficial): Leila Fuchter
 
 Leila Fuchter é tributarista especializada em transportadoras de carga. Em toda verificação, consulte o site dela (https://leilafuchter.com.br, incluindo blog e notícias, se houver) e, se possível, busque publicações recentes dela com WebSearch ("Leila Fuchter" + CBS, diesel, CT-e, transportadoras + mês atual). O Instagram dela (@leilafuchter) não abre sem login; não tente.
@@ -118,7 +136,7 @@ Use o conteúdo dela **só como pista**:
 - `ultimaVerificacao`: a hora real de agora em Brasília. Obtenha com `TZ=America/Sao_Paulo date +%Y-%m-%dT%H:%M:%S-03:00` (nunca estime a hora).
 - `novidadesHoje`: quantidade de itens com `registradoEm` igual à data de hoje e sem `"inicial": true` (soma as verificações do mesmo dia).
 - Se já houve verificação hoje, o `resumo` deve continuar citando o que entrou mais cedo no mesmo dia, acrescentando o que entrou agora.
-- `resumo`: em linguagem simples, para empresários. Primeiro parágrafo: o que entrou hoje, em poucas palavras (ou "Nenhuma novidade nos canais oficiais hoje."). Depois, em um parágrafo, o principal prazo ou ponto de atenção. Sem opinião.
+- `resumo`: em linguagem simples, para empresários de transporte. Primeiro parágrafo: o que entrou hoje, em poucas palavras, priorizando o que afeta transportadoras. Se não houver novidade, mantenha o resumo anterior sobre os assuntos em aberto (não escreva "sem novidades" nem nada sobre a verificação). Depois, em um parágrafo, o principal prazo ou ponto de atenção. Sem opinião. Nunca fale do painel, da rotina ou de sites que não abriram.
 - `historico`: acrescente `{"data": "AAAA-MM-DD", "novidades": N, "obs": "..."}` e mantenha só os 60 últimos.
 
 ## Gravar e publicar
