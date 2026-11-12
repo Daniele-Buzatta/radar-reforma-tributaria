@@ -71,6 +71,7 @@ O `resumo` do painel também é em linguagem simples, para o empresário de tran
 12. Portal do CT-e (notas técnicas de CT-e, MDF-e e BP-e): https://www.cte.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=Y0nErnoZpsg%3D
 13. Receita Federal · Normas (portarias, instruções normativas e atos): https://normas.receita.fazenda.gov.br
 15. ANP · Preços de combustíveis (ver seção "Preço do diesel")
+16. Receita Federal · página principal da Reforma Tributária do Consumo (legislação, perguntas e respostas, cronogramas, documentos técnicos): https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria-do-consumo
 14. Planalto · LC 214/2025 compilada: https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214compilado.htm
 
 **Consulte canal por canal.** Para cada um dos canais acima, faça ao menos uma consulta: WebFetch na página e, se ela não abrir, WebSearch com `allowed_domains` do próprio site (ex.: "CBS IBS" + mês atual). Não encerre a verificação com uma ou duas buscas gerais.
@@ -97,6 +98,13 @@ Há clientes que são empresas de ônibus. Em toda verificação, procure també
 - BP-e (notas técnicas, prazos, rejeições);
 - notícias da ANTT, da ANTP, do Ministério dos Transportes e do Marco Legal do Transporte Público ligadas à reforma.
 Novidades desse assunto vão na categoria "Transporte de passageiros", com `segmentos` incluindo `"passageiros"`. Atualize o tema `transporte-passageiros` e os guias `pas-*` quando houver mudança.
+
+### Outras fontes de pistas (não oficiais)
+
+Consulte também, em toda verificação, com as mesmas regras de "só pista" da seção da Leila Fuchter abaixo:
+- **Fin – Confederação Nacional das Instituições Financeiras**: https://fin.org.br/noticias/ — útil principalmente para split payment e pagamentos ligados à CBS e ao IBS.
+- **Jornal Contábil**: https://jornalcontabil.com.br/ — portal de notícias contábeis e tributárias.
+Se uma pista dessas fontes não tiver ato ou comunicado oficial correspondente, não publique; anote no `obs` do histórico "Pista não confirmada: <assunto> (<fonte>)". Nunca cite essas fontes no painel nem copie os textos delas.
 
 ### Fonte de pistas (não oficial): Leila Fuchter
 
