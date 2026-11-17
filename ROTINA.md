@@ -52,6 +52,7 @@ O `resumo` do painel também é em linguagem simples, para o empresário de tran
 ## Guias fixos
 
 - Se sair o ato conjunto do Ministério da Fazenda e do Comitê Gestor com o percentual do crédito presumido do transportador autônomo (LC 214/2025, art. 169, § 4º), atualize o guia `sub-tac` com o percentual e o link oficial, e registre a novidade.
+- Dispensa de CNPJ do transportador autônomo e do produtor rural (01/01/2027 a 31/12/2028): o ato conjunto RFB/CGIBS foi aprovado em 10/11/2026, mas ainda não tinha número nem publicação no DOU. Quando for publicado, atualize a novidade `2026-11-12-cgibs-dispensa-cnpj-tac-produtor` (campo `ato`, link oficial e texto) e o guia `sub-tac`, e registre como novidade.
 - Se mudar a CBS por litro do diesel, atualize `diesel.cbsPorLitro`, `diesel.cbsFonte` e `diesel.cbsUrl`.
 
 ## Canais a consultar
