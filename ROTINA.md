@@ -14,7 +14,7 @@ Estrutura:
 - `painel`: `ultimaVerificacao` (ISO com `-03:00`), `novidadesHoje` (número), `resumo` (texto, `\n` para quebras), `historico` (lista de `{data, novidades, obs}`).
 - `atualizacoes`: novidades. Campos: `id`, `data` (data da publicação, AAAA-MM-DD), `registradoEm` (data de hoje), `categoria`, `orgao`, `titulo`, `texto`, `ato` (opcional), `fonte`, `url`, `fonteOficial` (true/false).
   Itens da carga inicial têm `"inicial": true`; **itens novos não levam esse campo** (é o que faz aparecer a etiqueta "Novo").
-  Categorias em uso: Receita Federal, CGIBS, Documentos fiscais, Simples Nacional, Legislação, TCU, Congresso, Transporte e combustíveis. Crie outra só se nenhuma servir.
+  Categorias em uso: Receita Federal, CGIBS, Documentos fiscais, Simples Nacional, Legislação, TCU, Congresso, Cadastros, Transporte e combustíveis, Transporte de passageiros. Crie outra só se nenhuma servir.
 - `temas`: situação por tema. Campos: `id`, `tema`, `status` (`definido`, `tramitacao`, `pendente`, `implantacao`, `andamento`), `situacao`, `fontes` (lista de `{nome, url}`), `ordem`, `atualizadoEm`.
 - `cronograma`: `id`, `data`, `evento`, `curto` (até ~50 caracteres, aparece em "Próximos prazos"), `fonte`, `url`, `fonteOficial`.
 - `normas`: `id`, `ato`, `data`, `ementa`, `situacao`, `url`, `obs` (opcional).
@@ -25,7 +25,10 @@ Estrutura:
 
 ## Linguagem do painel (público: empresários)
 
-**Público-alvo: empresários do ramo de transporte** (donos e gestores de transportadoras de cargas e de empresas de ônibus e transporte de passageiros), clientes do escritório. Não são contadores. Escreva sempre pensando neles: o que muda no frete, no diesel, no CT-e, no crédito, no caixa da transportadora. Temas gerais entram também, mas, quando houver efeito para transportadoras, diga qual é.
+**Público-alvo: todos os clientes do escritório**, empresários de qualquer setor (comércio, indústria, serviços, produtor rural, transporte). Não são contadores. O painel cobre **a reforma tributária como um todo** na "Visão geral" (segmento `geral`) e tem segmentos específicos com aprofundamento (hoje: transporte de cargas e transporte de passageiros, onde está boa parte da carteira).
+- Todo assunto geral da reforma entra no segmento `geral`: cadastros, CNPJ, regime regular, Simples Nacional, documentos fiscais, split payment, alíquotas, prazos, obrigações, regulamentos.
+- Quando um assunto geral também afetar transportadoras de um jeito específico, inclua também o segmento correspondente e diga o efeito para elas.
+- Assuntos só de transporte (diesel, CT-e, TAC, BP-e, ônibus) ficam nos segmentos de transporte.
 
 **Nunca escreva no painel nada sobre o próprio painel**: mudanças de layout, ajustes, novos recursos, testes, rotina, falhas de sites ou de verificação. Isso não interessa ao cliente. Essas informações vão só no `obs` do `historico`, que não aparece para o cliente.
 
@@ -43,7 +46,7 @@ Também obrigatório em todo item novo de `atualizacoes`, `temas` e `cronograma`
 - `"geral"`: o que vale para empresas em geral.
 Pode usar mais de um.
 
-O `resumo` do painel também é em linguagem simples, para o empresário de transporte: até 3 parágrafos curtos, o primeiro com o que entrou hoje (priorizando o que afeta transportadoras), o último com o principal prazo ou ponto de atenção. Nada sobre o painel, a rotina ou sites que não abriram.
+O `resumo` do painel também é em linguagem simples, para empresários em geral: até 3 parágrafos curtos, o primeiro com o que entrou hoje (assuntos gerais e de transporte), o último com o principal prazo ou ponto de atenção. Nada sobre o painel, a rotina ou sites que não abriram.
 
 ## Preço do diesel (toda segunda e terça-feira)
 
@@ -79,6 +82,16 @@ O `resumo` do painel também é em linguagem simples, para o empresário de tran
 Procure também atos dos últimos 60 dias que ainda não estejam no painel (portarias, portarias conjuntas, resoluções do CGIBS, atos conjuntos, decretos, notas técnicas).
 Se um site não abrir, registre no `obs` do histórico quais canais ficaram sem verificação direta e siga com os demais.
 **Tente todos os canais em toda verificação**, inclusive o site da Leila Fuchter. Nunca pule um canal porque o histórico diz que ele falhou antes: a rede e os sites mudam.
+
+## Tema fixo: cadastros (vale para todos os clientes)
+
+Em toda verificação, procure especificamente novidades sobre cadastros ligados à reforma:
+- CNPJ: inscrição de pessoa física contribuinte, produtor rural e transportador autônomo (e dispensas temporárias), CNPJ alfanumérico, situação cadastral;
+- cadastro de contribuintes do IBS e da CBS, inscrições estaduais e municipais no novo modelo, cadastro único/sincronizado entre Receita e Comitê Gestor;
+- opção pelo regime regular (Simples Nacional, produtor rural, autônomo, MEI) e prazos de opção;
+- Cadastro Imobiliário Brasileiro (CIB) e outros cadastros exigidos pela reforma;
+- domicílio tributário eletrônico e acesso aos sistemas (Portal da Reforma, Plataforma CBS, sistemas do Comitê Gestor).
+Novidades desse assunto vão na categoria "Cadastros", com `segmentos` incluindo `"geral"` (e os de transporte quando houver efeito específico). Atualize o tema `cadastros` quando houver mudança.
 
 ## Tema fixo: transporte e combustíveis
 
@@ -145,7 +158,7 @@ Use o conteúdo dela **só como pista**:
 - `ultimaVerificacao`: a hora real de agora em Brasília. Obtenha com `TZ=America/Sao_Paulo date +%Y-%m-%dT%H:%M:%S-03:00` (nunca estime a hora).
 - `novidadesHoje`: quantidade de itens com `registradoEm` igual à data de hoje e sem `"inicial": true` (soma as verificações do mesmo dia).
 - Se já houve verificação hoje, o `resumo` deve continuar citando o que entrou mais cedo no mesmo dia, acrescentando o que entrou agora.
-- `resumo`: em linguagem simples, para empresários de transporte. Primeiro parágrafo: o que entrou hoje, em poucas palavras, priorizando o que afeta transportadoras. Se não houver novidade, mantenha o resumo anterior sobre os assuntos em aberto (não escreva "sem novidades" nem nada sobre a verificação). Depois, em um parágrafo, o principal prazo ou ponto de atenção. Sem opinião. Nunca fale do painel, da rotina ou de sites que não abriram.
+- `resumo`: em linguagem simples, para empresários em geral. Primeiro parágrafo: o que entrou hoje, em poucas palavras (assuntos gerais e de transporte). Se não houver novidade, mantenha o resumo anterior sobre os assuntos em aberto (não escreva "sem novidades" nem nada sobre a verificação). Depois, em um parágrafo, o principal prazo ou ponto de atenção. Sem opinião. Nunca fale do painel, da rotina ou de sites que não abriram.
 - `historico`: acrescente `{"data": "AAAA-MM-DD", "novidades": N, "obs": "..."}` e mantenha só os 60 últimos.
 
 ## Gravar e publicar
