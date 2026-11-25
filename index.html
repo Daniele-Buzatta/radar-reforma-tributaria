@@ -301,7 +301,8 @@ dialog::backdrop{background:rgba(4,20,60,.55)}
 </dialog>
 
 <!--DADOS-INICIO-->
-<script type="application/json" id="dados">{
+<script type="application/json" id="dados">
+{
   "painel": {
     "historico": [
       {
@@ -418,11 +419,16 @@ dialog::backdrop{background:rgba(4,20,60,.55)}
         "data": "2026-11-24",
         "novidades": 0,
         "obs": "Sem novidades. Diesel atualizado (ANP, semana 15/11 a 21/11). Sem verificação direta: DOU (busca sem ato novo), Portal NF-e (503), Portal CT-e (503), Normas RFB (sem conteúdo). Demais canais sem item novo. Já no radar, sem data na página: CGIBS contrato de crédito com a União; NFS-e homologação em Belo Horizonte. Pista não confirmada: PLP 299/26 e saldo credor de IBS/CBS (Jornal Contábil). Leila Fuchter: site só com cursos. Fin e ANTT: sem pista nova."
+      },
+      {
+        "data": "2026-11-25",
+        "novidades": 1,
+        "obs": "1 novidade (CGSN nº 196/2026, RFB 24/11). Sem verificação direta: DOU (502), Portal NF-e (503), Portal CT-e (503), Normas RFB (sem conteúdo); Planalto só parcial (LC 227/2026 como última alteração visível). CGIBS sem datas (contrato de crédito já no radar). Senado: 'Lei do ajuste fiscal' 24/11 sem confirmação de relação com a reforma. Pista não confirmada: PLP 299/26, compensação tributária (Jornal Contábil); Fin: split payment 98% (pista). Leila Fuchter: site só com cursos. ANTT: sem item novo. Diesel: não é dia de levantamento."
       }
     ],
-    "novidadesHoje": 0,
-    "resumo": "Entrou hoje: a Receita Federal informou que o resultado definitivo da opção pelo Simples Nacional para 2027 pode ser consultado, desde 20/11/2026, no Portal do Simples Nacional. Também segue disponível o Piloto da CBS, ambiente de testes aberto a empresas de todo o país.\n\nAlíquota da CBS: o Senado define o valor final até 15/12/2026; sem decisão, vale provisoriamente 11,3%. Diesel em 2027: a CBS será de R$ 0,3515 por litro (simulador em Transporte de cargas). Outros prazos: NFS-e com CBS e IBS passa para 01/01/2027 ou 01/03/2027, conforme o serviço; BP-e passa para 01/03/2027 e a 1ª entrega da 2ª fase da DeRE é em 15/12/2026.",
-    "ultimaVerificacao": "2026-11-24T07:04:18-03:00"
+    "novidadesHoje": 1,
+    "resumo": "Entrou hoje: o Comitê Gestor do Simples Nacional publicou a Resolução CGSN nº 196/2026, que atualiza as regras do Simples para a entrada gradual da CBS e do IBS a partir de 01/01/2027. Quem vende para órgãos públicos deve identificar essas receitas nas declarações. Também segue disponível o Piloto da CBS, ambiente de testes aberto a empresas de todo o país.\n\nAlíquota da CBS: o Senado define o valor final até 15/12/2026; sem decisão, vale provisoriamente 11,3%. Diesel em 2027: a CBS será de R$ 0,3515 por litro (simulador em Transporte de cargas). Outros prazos: NFS-e com CBS e IBS passa para 01/01/2027 ou 01/03/2027, conforme o serviço; BP-e passa para 01/03/2027 e a 1ª entrega da 2ª fase da DeRE é em 15/12/2026.",
+    "ultimaVerificacao": "2026-11-25T07:04:09-03:00"
   },
   "atualizacoes": [
     {
@@ -1115,6 +1121,26 @@ dialog::backdrop{background:rgba(4,20,60,.55)}
         "transporte",
         "passageiros"
       ]
+    },
+    {
+      "id": "2026-11-24-cgsn-resolucao-196",
+      "data": "2026-11-24",
+      "registradoEm": "2026-11-25",
+      "categoria": "Simples Nacional",
+      "orgao": "Receita Federal / CGSN",
+      "titulo": "Comitê Gestor do Simples Nacional publica novas regras para o Simples Nacional e para a transição da Reforma Tributária",
+      "texto": "Resolução CGSN nº 196, de 16/11/2026: atualiza as tabelas do Simples Nacional para prever a \"entrada gradual da CBS e do IBS\". Receitas de contratos com órgãos públicos devem ser identificadas separadamente nas declarações. Valores não recebidos até 31/12/2026, de operações até essa data, entram na apuração de dezembro de 2026. A Defis de 2026 é entregue pelo módulo PGDAS-D 2018. As alterações ligadas ao IBS e à CBS valem a partir de 01/01/2027.",
+      "ato": "Resolução CGSN nº 196, de 16 de novembro de 2026",
+      "fonte": "Receita Federal",
+      "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/novembro/comite-gestor-do-simples-nacional-publica-novas-regras-para-o-simples-nacional-e-para-a-transicao-da-reforma-tributaria",
+      "fonteOficial": true,
+      "chamada": "Simples Nacional: novas regras para a CBS e o IBS a partir de 2027",
+      "simples": "O Comitê Gestor do Simples Nacional (CGSN) atualizou as regras do Simples para a entrada gradual da CBS e do IBS, com efeitos a partir de 01/01/2027. Vale para micro e pequenas empresas do Simples; quem vende para órgãos públicos deve identificar essas receitas nas declarações. Converse com o seu contador.",
+      "segmentos": [
+        "geral",
+        "transporte",
+        "passageiros"
+      ]
     }
   ],
   "temas": [
@@ -1265,7 +1291,7 @@ dialog::backdrop{background:rgba(4,20,60,.55)}
       "simples": "O 'manual' oficial do IBS já foi publicado pelo Comitê Gestor."
     },
     {
-      "atualizadoEm": "2026-11-10",
+      "atualizadoEm": "2026-11-25",
       "fontes": [
         {
           "nome": "Receita Federal",
@@ -1274,10 +1300,14 @@ dialog::backdrop{background:rgba(4,20,60,.55)}
         {
           "nome": "CGIBS",
           "url": "https://cgibs.gov.br/embora-os-periodos-sejam-parecidos-tratam-de-escolhas-diferentes-por-isso-e-importante-entender-cada-situacao"
+        },
+        {
+          "nome": "Receita Federal (CGSN nº 196/2026)",
+          "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/novembro/comite-gestor-do-simples-nacional-publica-novas-regras-para-o-simples-nacional-e-para-a-transicao-da-reforma-tributaria"
         }
       ],
       "ordem": 7,
-      "situacao": "Receita Federal (29/10/2026): \"Mais de 1 milhão de contribuintes já optaram pelo regime regular do IBS e da CBS\".\nReceita e CGIBS discutem a ampliação do prazo de opção pelo regime específico da CBS e do IBS para as cooperativas (29/10/2026).",
+      "situacao": "Receita Federal (29/10/2026): \"Mais de 1 milhão de contribuintes já optaram pelo regime regular do IBS e da CBS\".\nReceita e CGIBS discutem a ampliação do prazo de opção pelo regime específico da CBS e do IBS para as cooperativas (29/10/2026).\nReceita Federal (24/11/2026): Resolução CGSN nº 196, de 16/11/2026, prevê a \"entrada gradual da CBS e do IBS\" no Simples Nacional, com efeitos a partir de 01/01/2027.",
       "status": "andamento",
       "tema": "Simples Nacional: opção pelo regime regular de IBS e CBS em 2027",
       "id": "simples-regime-regular",
@@ -1696,6 +1726,14 @@ dialog::backdrop{background:rgba(4,20,60,.55)}
       "ementa": "Altera o Ato Conjunto RFB/CGIBS nº 4, de 30 de julho de 2026, com novas datas de obrigatoriedade de documentos fiscais eletrônicos com IBS e CBS (NFS-e).",
       "situacao": "Publicado no DOU de 13/11/2026",
       "url": "https://www.gov.br/nfse/pt-br/noticias/cgnfs-e-informa-ato-conjunto-rfb-cgibs-no-7-2026-atualiza-o-cronograma-de-obrigatoriedade-de-emissao-da-nfs-e-para-ibs-e-cbs"
+    },
+    {
+      "id": "resolucao-cgsn-196-2026",
+      "ato": "Resolução CGSN nº 196, de 16 de novembro de 2026",
+      "data": "2026-11-16",
+      "ementa": "Atualiza as regras do Simples Nacional para a entrada gradual da CBS e do IBS (tabelas, identificação de receitas de contratos com órgãos públicos, apuração de dezembro de 2026, Defis 2026).",
+      "situacao": "Divulgada pela Receita Federal em 24/11/2026; efeitos do IBS e da CBS a partir de 01/01/2027",
+      "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/novembro/comite-gestor-do-simples-nacional-publica-novas-regras-para-o-simples-nacional-e-para-a-transicao-da-reforma-tributaria"
     }
   ],
   "segmentos": [
@@ -1988,7 +2026,8 @@ dialog::backdrop{background:rgba(4,20,60,.55)}
       ]
     }
   ]
-}</script>
+}
+</script>
 <!--DADOS-FIM-->
 
 <script>
